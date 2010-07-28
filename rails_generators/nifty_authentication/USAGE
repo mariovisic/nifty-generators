@@ -4,6 +4,9 @@ Description:
     handles authentication. This is similar to restful_authentication, but 
     simpler.
     
+    The generate uses haml instead of erb for view files. You will
+    have to include the haml gem in your project to operate correctly.
+    
     IMPORTANT: This generator uses the "title" helper method which is generated
     by the nifty_layout generator. You may want to run that generator first.
 

@@ -22,12 +22,12 @@ class NiftyAuthenticationGenerator < Rails::Generator::Base
       m.template "authlogic_session.rb", "app/models/#{session_singular_name}.rb" if options[:authlogic]
       m.template "users_controller.rb", "app/controllers/#{user_plural_name}_controller.rb"
       m.template "users_helper.rb", "app/helpers/#{user_plural_name}_helper.rb"
-      m.template "views/#{view_language}/signup.html.#{view_language}", "app/views/#{user_plural_name}/new.html.#{view_language}"
+      m.template "views/signup.html.haml", "app/views/#{user_plural_name}/new.html.haml"
       
       m.directory "app/views/#{session_plural_name}"
       m.template "sessions_controller.rb", "app/controllers/#{session_plural_name}_controller.rb"
       m.template "sessions_helper.rb", "app/helpers/#{session_plural_name}_helper.rb"
-      m.template "views/#{view_language}/login.html.#{view_language}", "app/views/#{session_plural_name}/new.html.#{view_language}"
+      m.template "views/login.html.haml", "app/views/#{session_plural_name}/new.html.haml"
       
       m.template "authentication.rb", "lib/authentication.rb"
       m.migration_template "migration.rb", "db/migrate", :migration_file_name => "create_#{user_plural_name}"
@@ -100,10 +100,6 @@ class NiftyAuthenticationGenerator < Rails::Generator::Base
 
 protected
   
-  def view_language
-    options[:haml] ? 'haml' : 'erb'
-  end
-  
   def test_framework
     options[:test_framework] ||= File.exist?(destination_path("spec")) ? :rspec : :testunit
   end
@@ -114,7 +110,6 @@ protected
     opt.on("--testunit", "Use test/unit for test files.") { options[:test_framework] = :testunit }
     opt.on("--rspec", "Use RSpec for test files.") { options[:test_framework] = :rspec }
     opt.on("--shoulda", "Use Shoulda for test files.") { options[:test_framework] = :shoulda }
-    opt.on("--haml", "Generate HAML views instead of ERB.") { |v| options[:haml] = true }
     opt.on("--authlogic", "Use Authlogic for authentication.") { |v| options[:authlogic] = true }
   end
   
