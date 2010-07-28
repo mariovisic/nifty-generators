@@ -2,6 +2,10 @@ Description:
   The nifty_layout generator creates a basic layout, stylesheet and
   helper which will give some structure to a starting Rails app.
   
+  The generate uses haml and sass for the layout and stylesheet, so
+  you will have to include the haml gem in your project to operate
+  correctly.
+  
   The generator takes one argument which will be the name of the
 	layout and stylesheet files. If no argument is passed then it defaults
 	to "application".
@@ -13,13 +17,13 @@ Description:
 Examples:
     script/generate nifty_layout
 
-        Layout:     app/views/layouts/application.html.erb
-        Stylesheet: public/stylesheets/application.css
+        Layout:     app/views/layouts/application.html.haml
+        Stylesheet: public/stylesheets/sass/application.sass
         Helper:     app/helpers/layout_helper.rb
 
 
     script/generate nifty_layout admin
 
-        Layout:     app/views/layouts/admin.html.erb
-        Stylesheet: public/stylesheets/admin.css
+        Layout:     app/views/layouts/admin.html.haml
+        Stylesheet: public/stylesheets/sass/admin.sass
         Helper:     app/helpers/layout_helper.rb
